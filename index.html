@@ -13,42 +13,53 @@
             --primary-hover: #1d4ed8;
             --success: #10b981;
             --danger: #ef4444;
-            --warning: #f59e0b;
             --text-dark: #0f172a;
             --text-muted: #64748b;
             --border: #e2e8f0;
             --focus-ring: rgba(37, 99, 233, 0.15);
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-canvas);
             color: var(--text-dark);
-            padding: 30px;
+            padding: 20px;
             margin: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
+            align-items: flex-start;
         }
 
         .dashboard-container {
-            max-width: 1540px;
             width: 100%;
+            max-width: 1680px;
             display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 30px;
+            grid-template-columns: 360px 1fr;
+            gap: 24px;
+            margin: 0 auto;
         }
 
-        @media (max-width: 1024px) {
-            .dashboard-container { grid-template-columns: 1fr; }
+        @media (max-width: 1100px) {
+            .dashboard-container { 
+                grid-template-columns: 1fr; 
+                gap: 16px;
+            }
+            body { padding: 12px; }
         }
 
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            box-sizing: border-box;
+            padding: 20px;
+            box-shadow: 0 4px 10px -1px rgba(15, 23, 42, 0.03);
+            display: flex;
+            flex-direction: column;
         }
 
         .header-main {
@@ -56,13 +67,21 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 14px;
-            margin-bottom: 20px;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
         }
 
-        h2 { margin: 0; font-weight: 600; font-size: 1.25em; color: var(--text-dark); letter-spacing: -0.01em;}
+        h2 { 
+            margin: 0; 
+            font-weight: 600; 
+            font-size: 1.1rem; 
+            color: var(--text-dark); 
+            letter-spacing: -0.01em;
+        }
 
-        .input-block { margin-bottom: 18px; }
+        .input-block { 
+            margin-bottom: 14px; 
+        }
         
         .label-container {
             display: flex;
@@ -72,76 +91,76 @@
         }
 
         label { 
-            font-size: 0.85em; 
+            font-size: 0.825rem; 
             color: var(--text-dark); 
             font-weight: 600;
         }
 
         .pill-badge {
-            font-size: 0.75em;
+            font-size: 0.7rem;
             background: var(--bg-input);
             color: var(--text-muted);
-            padding: 2px 8px;
-            border-radius: 20px;
+            padding: 2px 6px;
+            border-radius: 6px;
             font-weight: 500;
         }
 
         .checkbox-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 14px;
+            gap: 8px;
+            margin-bottom: 12px;
             cursor: pointer;
-            user-select: none;
-            font-size: 14px;
+            font-size: 0.85rem;
             font-weight: 600;
+            user-select: none;
         }
 
         .checkbox-container input {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
-        }
-
-        .hidden-panel {
-            display: none;
-            animation: fadeIn 0.2s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
+            margin: 0;
         }
 
         input, select {
             width: 100%;
-            padding: 11px 14px;
+            padding: 10px 12px;
             background: #fff;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 6px;
             color: var(--text-dark);
-            font-size: 14px;
-            box-sizing: border-box;
-            transition: all 0.2s ease;
+            font-size: 0.875rem;
+            transition: all 0.15s ease;
         }
         input:focus { 
             border-color: var(--primary); 
-            box-shadow: 0 0 0 4px var(--focus-ring);
+            box-shadow: 0 0 0 3px var(--focus-ring);
             outline: none; 
+        }
+
+        input:disabled, select:disabled {
+            background-color: #f8fafc;
+            color: #94a3b8;
+            border-color: #e2e8f0;
+            cursor: not-allowed;
+        }
+        .dimmed-label {
+            color: #94a3b8 !important;
+            transition: color 0.15s ease;
         }
 
         button {
             width: 100%;
-            padding: 12px;
+            padding: 11px;
             background: var(--primary);
             color: #ffffff;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.15s ease;
-            font-size: 14px;
-            margin-top: 10px;
+            font-size: 0.875rem;
+            transition: background 0.15s;
         }
         button:hover { background: var(--primary-hover); }
 
@@ -149,156 +168,220 @@
             background: #ffffff;
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 24px;
+            padding: 4px;
+            margin-bottom: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
             overflow: hidden;
+            aspect-ratio: 18 / 5.5; 
         }
         
         canvas {
             background: #ffffff;
             width: 100%; 
             height: auto;
-            max-height: 340px;
-            box-shadow: inset 0 0 0 1px var(--border);
-            border-radius: 4px;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         .export-group {
             display: grid;
-            grid-template-columns: 1fr 120px;
-            gap: 10px;
-            margin-top: 15px;
+            grid-template-columns: 1fr 110px;
+            gap: 8px;
+            margin-top: 10px;
         }
 
-        .sort-container {
+        .control-hub-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .sort-engine-group {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-bottom: 12px;
-            font-size: 13px;
-            color: var(--text-muted);
+            gap: 8px;
         }
-        .sort-select {
-            width: auto;
-            padding: 6px 12px;
-            font-size: 13px;
+        .sort-label {
+            font-size: 0.775rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .sort-select-dropdown {
+            width: 210px;
+            padding: 6px 10px;
+            font-size: 0.775rem;
             border-radius: 6px;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+        .btn-direction-arrow {
+            background: #ffffff;
+            color: #0f172a;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            font-size: 0.775rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 135px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            transition: all 0.12s ease;
+        }
+        .btn-direction-arrow:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
         }
 
         .matrix-view {
+            overflow-x: auto;
             overflow-y: auto;
-            max-height: 360px;
+            max-height: 560px; 
             border: 1px solid var(--border);
             border-radius: 8px;
+            width: 100%;
         }
         
-        table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        th, td { padding: 14px 18px; border-bottom: 1px solid var(--border); text-align: left; }
-        th { background: #f8fafc; color: var(--text-muted); font-size: 12px; font-weight: 600; position: sticky; top: 0; z-index: 10; text-transform: uppercase; letter-spacing: 0.05em;}
-        tr { transition: background 0.15s; cursor: pointer; }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            font-size: 0.85rem; 
+            min-width: 750px;
+        }
+        th { 
+            background: #f8fafc; 
+            color: var(--text-muted); 
+            font-size: 0.725rem; 
+            font-weight: 600; 
+            position: sticky; 
+            top: 0; 
+            z-index: 10; 
+            text-transform: uppercase;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+        td { 
+            padding: 12px 14px; 
+            border-bottom: 1px solid var(--border); 
+            text-align: left;
+            vertical-align: middle;
+        }
+        tr { transition: background 0.12s; cursor: pointer; }
         tr:hover { background: #f8fafc; }
-        tr.selected { background: #eff6ff; border-left: 4px solid var(--primary); }
+        tr.selected { background: #f0f6ff; border-left: 4px solid var(--primary); }
 
-        .sub-vector { display: block; font-size: 11px; color: var(--text-muted); margin-top: 2px; font-family: monospace; }
-        .diameter-tag { display: inline-block; padding: 2px 5px; border-radius: 4px; font-size: 10.5px; font-weight: 600; margin-right: 3px; }
-        .dia-min { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
-        .dia-avg { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
-        .dia-max { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+        .sub-vector { display: block; font-size: 0.65rem; color: var(--text-muted); font-family: monospace; margin-top: 1px; }
         
-        .status-msg { text-align: center; padding: 45px; font-size: 14px; color: var(--text-muted); font-weight: 500; }
-        .status-msg strong { color: var(--danger); }
+        .simplified-diameter-badge {
+            display: inline-block;
+            background: #f8fafc;
+            color: #334155;
+            border: 1px solid #e2e8f0;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: monospace;
+        }
+        
+        .status-msg { text-align: center; padding: 40px; font-size: 0.85rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
 
 <div class="dashboard-container">
-    <!-- Configuration Controls -->
-    <div class="card" style="display: flex; flex-direction: column; justify-content: flex-start;">
+    <div class="card">
         <div class="header-main">
             <h2>Optical Profile</h2>
-            <span class="pill-badge" style="background: rgba(37, 99, 233, 0.1); color: var(--primary);">Active Session</span>
+            <span class="pill-badge" style="background: rgba(37, 99, 233, 0.08); color: var(--primary); font-weight: 600;">System Inputs</span>
         </div>
         
         <div class="input-block">
             <div class="label-container">
-                <label for="f1">Objective Focal Length (L1)</label>
-                <span class="pill-badge" id="liveP1">-- Diopters</span>
+                <label for="f1">Objective Focal (L1)</label>
+                <span class="pill-badge" id="liveP1">-- D</span>
             </div>
             <input type="number" id="f1" value="60" step="1" oninput="updateLiveMetrics()">
         </div>
         <div class="input-block">
             <div class="label-container">
-                <label for="f2">Variator Focal Length (L2)</label>
-                <span class="pill-badge" id="liveP2">-- Diopters</span>
+                <label for="f2">Variator Focal (L2)</label>
+                <span class="pill-badge" id="liveP2">-- D</span>
             </div>
             <input type="number" id="f2" value="-60" step="1" oninput="updateLiveMetrics()">
         </div>
         <div class="input-block">
             <div class="label-container">
-                <label for="f3">Eyepiece Focal Length (L3)</label>
-                <span class="pill-badge" id="liveP3">-- Diopters</span>
+                <label for="f3">Eyepiece Focal (L3)</label>
+                <span class="pill-badge" id="liveP3">-- D</span>
             </div>
             <input type="number" id="f3" value="-10" step="1" oninput="updateLiveMetrics()">
         </div>
         <div class="input-block">
             <div class="label-container">
-                <label for="targetM">Target Magnification Scaling</label>
+                <label for="targetM">Target Magnification</label>
             </div>
             <input type="number" id="targetM" value="120" step="1" oninput="updateLiveMetrics()">
         </div>
 
-        <!-- Target Proximity System Parameters -->
-        <div class="input-block" style="border-top: 1px solid var(--border); padding-top: 15px; margin-top: 5px;">
+        <div class="input-block" style="border-top: 1px solid var(--border); padding-top: 14px; margin-top: 8px;">
             <label class="checkbox-container">
                 <input type="checkbox" id="infinityCheck" checked onchange="toggleInfinityInput()">
                 Object at Infinity (∞ Source)
             </label>
             
-            <div id="distanceInputPanel" class="hidden-panel">
+            <div id="distanceInputPanel">
                 <div class="label-container">
-                    <label for="objectDistance">Object Target Distance</label>
+                    <label id="distanceLabel" class="dimmed-label" for="objectDistance">Target Proximity Distance (km)</label>
                 </div>
-                <input type="number" id="objectDistance" value="500" step="1">
+                <input type="number" id="objectDistance" value="500" step="1" disabled>
             </div>
         </div>
         
-        <button onclick="computeMatrix()">Calculate System Alignments</button>
+        <button onclick="computeMatrix()">Calculate Alignments</button>
         
         <div class="export-group">
-            <button style="margin-top:0;" onclick="executeSystemExport()">Export Output</button>
-            <select id="exportFormat" style="padding: 11px;">
+            <button style="margin-top:0;" onclick="executeSystemExport()">Export</button>
+            <select id="exportFormat" style="padding: 10px;">
                 <option value="png">PNG Image</option>
                 <option value="jpeg">JPEG Image</option>
-                <option value="json">JSON Dataset</option>
+                <option value="webp">WebP Image</option>
+                <option value="svg">SVG Vector</option>
+                <option value="json">JSON Data</option>
             </select>
         </div>
     </div>
 
-    <!-- Analytics Dashboard Workspace -->
-    <div class="card" style="display: flex; flex-direction: column;">
+    <div class="card">
         <div class="header-main">
             <h2>Alignment Analysis Worksheet</h2>
         </div>
         
-        <!-- High-Definition Render Canvas Workspace Component -->
         <div class="canvas-container">
-            <canvas id="opticalCanvas" width="3160" height="1080"></canvas>
+            <canvas id="opticalCanvas" width="7200" height="2200"></canvas>
         </div>
 
-        <div class="sort-container">
-            <label for="sortOrder">Sort Matrix Sequence:</label>
-            <select id="sortOrder" class="sort-select" onchange="renderMatrixTable()">
-                <option value="length_asc" selected>Total Length: Shortest at Top</option>
-                <option value="length_desc">Total Length: Longest at Top</option>
-                <option value="accuracy">Target Accuracy: Nearest Match</option>
-            </select>
+        <div class="control-hub-row">
+            <div class="sort-engine-group">
+                <span class="sort-label">Sort Sequence:</span>
+                <select id="sortMetricSelect" class="sort-select-dropdown" onchange="renderMatrixTable()">
+                    <option value="length" selected>Total System Length</option>
+                    <option value="mag">Magnification</option>
+                    <option value="accuracy">Most Accurate Magnification</option>
+                </select>
+                <button type="button" id="sortDirBtn" class="btn-direction-arrow" onclick="toggleSortDirection()">
+                    Lowest First &darr;
+                </button>
+            </div>
         </div>
 
-        <div class="matrix-view" style="flex-grow: 1;">
+        <div class="matrix-view">
             <table>
                 <thead>
                     <tr>
@@ -306,7 +389,7 @@
                         <th>Interval Gap 2 (d2)</th>
                         <th>System Output</th>
                         <th>Total System Length</th>
-                        <th>Required Lens Diameter Profile (Optimal Quality)</th>
+                        <th>Required Lens Diameter (Optimal Quality)</th>
                     </tr>
                 </thead>
                 <tbody id="matrixBody">
@@ -321,18 +404,42 @@
 let calculationCache = [];
 let globalActiveDataset = null;
 
+let isAscendingDirection = true; 
+
 function updateLiveMetrics() {
     ['f1', 'f2', 'f3'].forEach((id, i) => {
         let val = parseFloat(document.getElementById(id).value);
         let diopter = val !== 0 ? (100 / val).toFixed(2) : "0.00";
-        document.getElementById(`liveP${i+1}`).innerText = `${diopter} Diopters`;
+        document.getElementById(`liveP${i+1}`).innerText = `${diopter} D`;
     });
 }
 
 function toggleInfinityInput() {
     const isInfinity = document.getElementById('infinityCheck').checked;
-    const panel = document.getElementById('distanceInputPanel');
-    panel.style.display = isInfinity ? 'none' : 'block';
+    const inputField = document.getElementById('objectDistance');
+    const labelField = document.getElementById('distanceLabel');
+    
+    if (isInfinity) {
+        inputField.disabled = true;
+        labelField.classList.add('dimmed-label');
+    } else {
+        inputField.disabled = false;
+        labelField.classList.remove('dimmed-label');
+    }
+}
+
+function toggleSortDirection() {
+    isAscendingDirection = !isAscendingDirection;
+    const dirBtn = document.getElementById('sortDirBtn');
+    
+    // Updated arrow layout positions (Text first, followed by arrow suffix)
+    if (isAscendingDirection) {
+        dirBtn.innerHTML = 'Lowest First &darr;';
+    } else {
+        dirBtn.innerHTML = 'Highest First &uarr;';
+    }
+    
+    renderMatrixTable();
 }
 
 function computeMatrix() {
@@ -341,7 +448,9 @@ function computeMatrix() {
     const f3 = parseFloat(document.getElementById('f3').value);
     const targetM = parseFloat(document.getElementById('targetM').value);
     const isInfinity = document.getElementById('infinityCheck').checked;
-    const objectDistance = isInfinity ? Infinity : parseFloat(document.getElementById('objectDistance').value);
+    
+    const objectDistanceKm = parseFloat(document.getElementById('objectDistance').value);
+    const objectDistance = isInfinity ? Infinity : objectDistanceKm * 100000;
     
     const step = targetM >= 100 ? 0.50 : 0.20; 
     calculationCache = [];
@@ -351,7 +460,6 @@ function computeMatrix() {
     let checkedCombinations = new Set();
     let dynamicWindow = targetM >= 100 ? (targetM * 0.25) : (targetM * 0.05);
 
-    // Dynamic shift calculation adjusting focal distance transformations for close projections
     let dynamicF1 = f1;
     if (!isInfinity && objectDistance > 0 && objectDistance !== f1) {
         dynamicF1 = (objectDistance * f1) / (objectDistance - f1);
@@ -378,9 +486,7 @@ function computeMatrix() {
                 if (!checkedCombinations.has(comboKey)) {
                     checkedCombinations.add(comboKey);
 
-                    // Physical metrics calculated and normalized in standard Centimeters (cm)
                     let baseMin = 1.80 + (sysMag * 0.02);
-                    let baseAvg = 2.80 + (sysMag * 0.04);
                     let baseMax = 4.20 + (sysMag * 0.07);
 
                     calculationCache.push({
@@ -390,11 +496,10 @@ function computeMatrix() {
                         total: parseFloat((d1 + d2).toFixed(2)),
                         diff: diff,
                         isInfinity: isInfinity,
-                        objectDistance: objectDistance,
+                        objectDistanceKm: objectDistanceKm,
                         diameter: { 
-                            min: baseMin.toFixed(2), 
-                            avg: baseAvg.toFixed(2), 
-                            max: baseMax.toFixed(2) 
+                            min: Math.round(baseMin), 
+                            max: Math.round(baseMax) 
                         }
                     });
                 }
@@ -407,24 +512,29 @@ function computeMatrix() {
 
 function renderMatrixTable() {
     const tbody = document.getElementById('matrixBody');
-    const sortValue = document.getElementById('sortOrder').value;
+    const activeSortMetric = document.getElementById('sortMetricSelect').value;
     
     if (calculationCache.length === 0) {
         tbody.innerHTML = `<tr><td colspan="5" class="status-msg">
             <strong>Parameters Beyond Boundaries!</strong><br>
-            No clear matching configuration was found for the parameters specified. Adjust inputs.
+            No clear matching configuration was found. Adjust inputs.
         </td></tr>`;
         clearCanvas();
         return;
     }
 
-    if (sortValue === 'length_asc') {
-        calculationCache.sort((a, b) => a.total - b.total);
-    } else if (sortValue === 'length_desc') {
-        calculationCache.sort((a, b) => b.total - a.total);
-    } else if (sortValue === 'accuracy') {
-        calculationCache.sort((a, b) => a.diff - b.diff);
-    }
+    calculationCache.sort((a, b) => {
+        let itemValA, itemValB;
+        if (activeSortMetric === 'length') {
+            itemValA = a.total; itemValB = b.total;
+        } else if (activeSortMetric === 'mag') {
+            itemValA = a.mag; itemValB = b.mag;
+        } else if (activeSortMetric === 'accuracy') {
+            itemValA = a.diff; itemValB = b.diff;
+        }
+        
+        return isAscendingDirection ? (itemValA - itemValB) : (itemValB - itemValA);
+    });
 
     tbody.innerHTML = '';
 
@@ -443,17 +553,14 @@ function renderMatrixTable() {
         };
 
         row.innerHTML = `
-            <td><strong>${dataset.d1} cm</strong><span class="sub-vector">Offset Track 1</span></td>
-            <td><strong>${dataset.d2} cm</strong><span class="sub-vector">Offset Track 2</span></td>
-            <td><span style="color:var(--primary); font-weight:700;">${dataset.mag}x</span><span class="sub-vector">Net Zoom Output</span></td>
-            <td><strong>${dataset.total} cm</strong><span class="sub-vector">Total Tracking Length</span></td>
+            <td><strong>${dataset.d1} cm</strong><span class="sub-vector">d1 offset</span></td>
+            <td><strong>${dataset.d2} cm</strong><span class="sub-vector">d2 offset</span></td>
+            <td><span style="color:var(--primary); font-weight:700; font-size:0.95rem;">${dataset.mag}x</span></td>
+            <td><strong>${dataset.total} cm</strong><span class="sub-vector">Total track</span></td>
             <td>
-                <div style="margin-bottom: 4px;">
-                    <span class="diameter-tag dia-min">MIN: ${dataset.diameter.min} cm</span>
-                    <span class="diameter-tag dia-avg">AVG: ${dataset.diameter.avg} cm</span>
-                    <span class="diameter-tag dia-max">MAX: ${dataset.diameter.max} cm</span>
+                <div class="simplified-diameter-badge">
+                    ${dataset.diameter.min} - ${dataset.diameter.max} cm
                 </div>
-                <span class="sub-vector">Clear Aperture Field Guidelines</span>
             </td>
         `;
         tbody.appendChild(row);
@@ -473,8 +580,6 @@ function drawSystemSchematic(dataset) {
     const ctx = canvas.getContext('2d');
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Canvas Background
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -482,18 +587,16 @@ function drawSystemSchematic(dataset) {
     const f2 = parseFloat(document.getElementById('f2').value);
     const f3 = parseFloat(document.getElementById('f3').value);
 
-    // Space planning geometry metrics
-    const railY = 540;
-    const paddingLeft = 450; 
-    const paddingRight = 320;
+    const railY = 1120;
+    const paddingLeft = 1280; 
+    const paddingRight = 1280;
     const workspaceWidth = canvas.width - paddingLeft - paddingRight;
 
     let p1 = paddingLeft;
     let p2 = p1 + (dataset.d1 / dataset.total) * workspaceWidth;
     let p3 = p1 + workspaceWidth;
 
-    // Safety checks guaranteeing labels and elements never cross paths or overlap
-    const minimumAllowedGapPx = 350;
+    const minimumAllowedGapPx = 960; 
     if ((p2 - p1) < minimumAllowedGapPx) {
         let shift = minimumAllowedGapPx - (p2 - p1);
         p2 += shift;
@@ -503,44 +606,44 @@ function drawSystemSchematic(dataset) {
         p3 = p2 + minimumAllowedGapPx;
     }
 
-    // Dynamic scale adjustment to fit content safely inside view bounds
-    const maxBoundaryNeeded = p3 + 120;
-    if (maxBoundaryNeeded > canvas.width) {
-        const structuralScaleFactor = (canvas.width - paddingLeft - paddingRight) / (maxBoundaryNeeded - paddingLeft);
-        p2 = p1 + (p2 - p1) * structuralScaleFactor;
-        p3 = p1 + (p3 - p1) * structuralScaleFactor;
-    }
+    const headerY = 220;
 
-    // 1. Dynamic Ray Tracing & Target Proximity Vector Engine
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 104px system-ui, -apple-system, sans-serif';
+    ctx.textAlign = 'left';
+    let objectLabelText = dataset.isInfinity ? 'Object: Infinity' : `Object: ${dataset.objectDistanceKm} km away`;
+    ctx.fillText(objectLabelText, 160, headerY);
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#2563eb';
+    ctx.font = 'bold 112px monospace';
+    ctx.fillText(`Total: ${dataset.total.toFixed(1)} cm  |  Zoom: ${dataset.mag}x`, canvas.width / 2, headerY);
+
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 104px system-ui, -apple-system, sans-serif';
+    ctx.fillText(`Lens Dia: ${dataset.diameter.min} - ${dataset.diameter.max} cm`, canvas.width - 160, headerY);
+
     if (dataset.isInfinity) {
-        // Draw Infinite Source Parallel Rays
-        ctx.strokeStyle = 'rgba(37, 99, 233, 0.15)';
-        ctx.lineWidth = 5;
-        const parallelOffsets = [-180, -90, 0, 90, 180];
+        ctx.strokeStyle = 'rgba(37, 99, 233, 0.14)';
+        ctx.lineWidth = 16;
+        const parallelOffsets = [-320, -160, 0, 160, 320];
         parallelOffsets.forEach(offset => {
             ctx.beginPath();
-            ctx.moveTo(50, railY + offset);
+            ctx.moveTo(160, railY + offset);
             ctx.lineTo(p1, railY + offset);
             ctx.stroke();
         });
 
-        // Infinity Source Glyph Node
         ctx.fillStyle = '#2563eb';
         ctx.beginPath();
-        ctx.arc(100, railY, 16, 0, 2 * Math.PI);
+        ctx.arc(160, railY, 40, 0, 2 * Math.PI);
         ctx.fill();
-        
-        ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 36px system-ui';
-        ctx.textAlign = 'left';
-        ctx.fillText('Object at Infinity (∞)', 140, railY + 12);
     } else {
-        // Draw Converging Rays from Fixed Point Source
-        ctx.strokeStyle = 'rgba(245, 158, 11, 0.25)';
-        ctx.lineWidth = 5;
-        
-        const closePointX = 120;
-        const peripheralOffsets = [-180, -90, 0, 90, 180];
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.22)';
+        ctx.lineWidth = 16;
+        const closePointX = 160;
+        const peripheralOffsets = [-320, -160, 0, 160, 320];
         peripheralOffsets.forEach(offset => {
             ctx.beginPath();
             ctx.moveTo(closePointX, railY);
@@ -548,150 +651,103 @@ function drawSystemSchematic(dataset) {
             ctx.stroke();
         });
 
-        // Proximity Target Node Graphic
         ctx.fillStyle = '#f59e0b';
         ctx.beginPath();
-        ctx.moveTo(closePointX, railY - 20);
-        ctx.lineTo(closePointX + 16, railY);
-        ctx.lineTo(closePointX, railY + 20);
-        ctx.lineTo(closePointX - 16, railY);
+        ctx.moveTo(closePointX, railY - 48);
+        ctx.lineTo(closePointX + 40, railY);
+        ctx.lineTo(closePointX, railY + 48);
+        ctx.lineTo(closePointX - 40, railY);
         ctx.closePath();
         ctx.fill();
-
-        ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 34px system-ui';
-        ctx.textAlign = 'left';
-        ctx.fillText(`Target Distance: ${dataset.objectDistance} cm`, 160, railY + 12);
     }
 
-    // 2. Optical Centerline Reference Axis
     ctx.strokeStyle = '#e2e8f0';
-    ctx.lineWidth = 36;
+    ctx.lineWidth = 56;
     ctx.lineCap = 'square';
     ctx.beginPath();
-    ctx.moveTo(p1 - 50, railY);
-    ctx.lineTo(p3 + 50, railY);
+    ctx.moveTo(p1 - 240, railY);
+    ctx.lineTo(p3 + 240, railY);
     ctx.stroke();
 
     ctx.strokeStyle = '#94a3b8';
-    ctx.lineWidth = 4;
-    ctx.setLineDash([20, 15]);
+    ctx.lineWidth = 10;
+    ctx.setLineDash([48, 40]);
     ctx.beginPath();
-    ctx.moveTo(40, railY);
-    ctx.lineTo(canvas.width - 40, railY);
+    ctx.moveTo(120, railY);
+    ctx.lineTo(canvas.width - 120, railY);
     ctx.stroke();
     ctx.setLineDash([]); 
 
-    // 3. Elements Profile Presentation Layout Engine
     function renderComponentLens(x, focal, heading) {
         const isConvex = focal >= 0;
-        const lensHeight = 340;
+        const lensHeight = 720;
 
         ctx.strokeStyle = isConvex ? '#047857' : '#b91c1c';
         ctx.fillStyle = isConvex ? '#10b981' : '#f43f5e';
-        ctx.lineWidth = 8;
+        ctx.lineWidth = 20;
 
         ctx.beginPath();
         if (isConvex) {
-            ctx.ellipse(x, railY, 36, lensHeight / 2, 0, 0, 2 * Math.PI);
+            ctx.ellipse(x, railY, 80, lensHeight / 2, 0, 0, 2 * Math.PI);
         } else {
-            ctx.rect(x - 24, railY - (lensHeight / 2), 48, lensHeight);
+            ctx.rect(x - 56, railY - (lensHeight / 2), 112, lensHeight);
         }
         ctx.fill();
         ctx.stroke();
 
-        // Upper Metadata Profile Stack
         ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 38px system-ui';
+        ctx.font = 'bold 100px system-ui, -apple-system, sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText(heading, x, railY - 220);
+        ctx.fillText(heading, x, railY - 590); 
 
         ctx.fillStyle = '#64748b';
-        ctx.font = '600 32px monospace';
-        ctx.fillText(`f = ${focal} cm`, x, railY - 175);
+        ctx.font = '600 80px monospace';
+        ctx.fillText(`f = ${focal} cm`, x, railY - 470); 
     }
 
-    // 4. Dimensions Vector Graphics Engine (Stacked to prevent overlap)
     function renderDimensionLine(startX, endX, targetY, valueText, parameterCode) {
         ctx.strokeStyle = '#2563eb';
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 10;
         
         ctx.beginPath();
-        ctx.moveTo(startX + 12, targetY);
-        ctx.lineTo(endX - 12, targetY);
+        ctx.moveTo(startX + 32, targetY);
+        ctx.lineTo(endX - 32, targetY);
         ctx.stroke();
 
-        // Structural Arrow Heads
         ctx.fillStyle = '#2563eb';
         ctx.beginPath();
-        ctx.moveTo(startX + 26, targetY - 14);
+        ctx.moveTo(startX + 56, targetY - 24);
         ctx.lineTo(startX, targetY);
-        ctx.lineTo(startX + 26, targetY + 14);
+        ctx.lineTo(startX + 56, targetY + 24);
         ctx.fill();
 
         ctx.beginPath();
-        ctx.moveTo(endX - 26, targetY - 14);
+        ctx.moveTo(endX - 56, targetY - 24);
         ctx.lineTo(endX, targetY);
-        ctx.lineTo(endX - 26, targetY + 14);
+        ctx.lineTo(endX - 56, targetY + 24);
         ctx.fill();
 
-        // Measurement indicator block label text
         ctx.fillStyle = '#ffffff';
         let displayText = `${parameterCode} = ${valueText}`;
-        ctx.font = 'bold 32px monospace';
-        let blockWidth = ctx.measureText(displayText).width + 30;
+        ctx.font = 'bold 80px monospace';
+        let blockWidth = ctx.measureText(displayText).width + 56;
 
-        ctx.fillRect(((startX + endX) / 2) - (blockWidth / 2), targetY - 30, blockWidth, 60);
+        ctx.fillRect(((startX + endX) / 2) - (blockWidth / 2), targetY - 64, blockWidth, 128);
         ctx.strokeStyle = '#3b82f6';
-        ctx.lineWidth = 2;
-        ctx.strokeRect(((startX + endX) / 2) - (blockWidth / 2), targetY - 30, blockWidth, 60);
+        ctx.lineWidth = 4;
+        ctx.strokeRect(((startX + endX) / 2) - (blockWidth / 2), targetY - 64, blockWidth, 128);
 
         ctx.fillStyle = '#1d4ed8';
         ctx.textAlign = 'center';
-        ctx.fillText(displayText, (startX + endX) / 2, targetY + 11);
+        ctx.fillText(displayText, (startX + endX) / 2, targetY + 28);
     }
 
-    // Plot System Elements 
     renderComponentLens(p1, f1, 'Objective (L1)');
     renderComponentLens(p2, f2, 'Variator (L2)');
     renderComponentLens(p3, f3, 'Eyepiece (L3)');
 
-    // Plan space paths cleanly to separate projection tracks
-    renderDimensionLine(p1, p2, railY + 360, `${dataset.d1.toFixed(1)} cm`, 'd1');
-    renderDimensionLine(p2, p3, railY + 440, `${dataset.d2.toFixed(1)} cm`, 'd2');
-
-    // 5. Consolidated Clear Aperture Dimension Requirements Panel
-    const diameterPanelY = 110;
-    const panelStartX = 50;
-    
-    // Clear backplane shadow box for system status presentation
-    ctx.fillStyle = '#f8fafc';
-    ctx.strokeStyle = '#e2e8f0';
-    ctx.lineWidth = 3;
-    ctx.fillRect(panelStartX, diameterPanelY - 50, 1140, 100);
-    ctx.strokeRect(panelStartX, diameterPanelY - 50, 1140, 100);
-
-    ctx.fillStyle = '#0f172a';
-    ctx.font = 'bold 32px system-ui';
-    ctx.textAlign = 'left';
-    ctx.fillText('Required Lens Diameters:', panelStartX + 25, diameterPanelY + 10);
-
-    ctx.font = 'bold 30px monospace';
-    ctx.fillStyle = '#475569';
-    ctx.fillText(`MIN: ${dataset.diameter.min} cm`, panelStartX + 460, diameterPanelY + 10);
-    ctx.fillStyle = '#1e40af';
-    ctx.fillText(`AVG: ${dataset.diameter.avg} cm`, panelStartX + 690, diameterPanelY + 10);
-    ctx.fillStyle = '#065f46';
-    ctx.fillText(`MAX: ${dataset.diameter.max} cm`, panelStartX + 920, diameterPanelY + 10);
-
-    // 6. Right Aligned Global Specifications Header Dashboard Layer
-    ctx.textAlign = 'right';
-    ctx.fillStyle = '#2563eb';
-    ctx.font = 'bold 38px monospace';
-    ctx.fillText(`TOTAL RAIL LENGTH: ${dataset.total.toFixed(1)} cm`, canvas.width - 50, diameterPanelY - 15);
-    ctx.fillStyle = '#059669';
-    ctx.font = 'bold 34px monospace';
-    ctx.fillText(`Calculated Scale Output: ${dataset.mag}x Zoom`, canvas.width - 50, diameterPanelY + 35);
+    renderDimensionLine(p1, p2, railY + 640, `${dataset.d1.toFixed(1)} cm`, 'd1');
+    renderDimensionLine(p2, p3, railY + 880, `${dataset.d2.toFixed(1)} cm`, 'd2');
 }
 
 function executeSystemExport() {
@@ -702,20 +758,53 @@ function executeSystemExport() {
 
     const format = document.getElementById('exportFormat').value;
     const canvas = document.getElementById('opticalCanvas');
+    const f1 = document.getElementById('f1').value;
+    const f2 = document.getElementById('f2').value;
+    const f3 = document.getElementById('f3').value;
 
     if (format === 'json') {
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(calculationCache, null, 4));
         const dlAnchor = document.createElement('a');
         dlAnchor.setAttribute("href", dataStr);
-        dlAnchor.setAttribute("download", `optical_alignment_matrix_${Date.now()}.json`);
+        dlAnchor.setAttribute("download", `optical_matrix_data_${Date.now()}.json`);
         dlAnchor.click();
-    } else {
-        let mimeType = format === 'jpeg' ? 'image/jpeg' : 'image/png';
-        let fileExtension = format === 'jpeg' ? 'jpg' : 'png';
+    } 
+    else if (format === 'svg') {
+        let objectText = globalActiveDataset.isInfinity ? 'Infinity' : `${globalActiveDataset.objectDistanceKm} km away`;
+        
+        let svgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 550" width="100%" height="100%">
+            <rect width="100%" height="100%" fill="#ffffff"/>
+            <text x="40" y="55" font-family="system-ui, sans-serif" font-weight="bold" font-size="26" fill="#0f172a">Object: ${objectText}</text>
+            <text x="900" y="55" font-family="monospace" font-weight="bold" font-size="28" fill="#2563eb" text-anchor="middle">Total: ${globalActiveDataset.total.toFixed(1)} cm  |  Zoom: ${globalActiveDataset.mag}x</text>
+            <text x="1760" y="55" font-family="system-ui, sans-serif" font-weight="bold" font-size="26" fill="#0f172a" text-anchor="end">Lens Dia: ${globalActiveDataset.diameter.min} - ${globalActiveDataset.diameter.max} cm</text>
+            <line x1="30" y1="280" x2="1770" y2="280" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="12,10"/>
+            <text x="500" y="145" font-family="system-ui, sans-serif" font-weight="bold" font-size="25" fill="#0f172a" text-anchor="middle">Objective (L1)</text>
+            <text x="500" y="175" font-family="monospace" font-weight="600" font-size="20" fill="#64748b" text-anchor="middle">f = ${f1} cm</text>
+            <text x="900" y="145" font-family="system-ui, sans-serif" font-weight="bold" font-size="25" fill="#0f172a" text-anchor="middle">Variator (L2)</text>
+            <text x="900" y="175" font-family="monospace" font-weight="600" font-size="20" fill="#64748b" text-anchor="middle">f = ${f2} cm</text>
+            <text x="1300" y="145" font-family="system-ui, sans-serif" font-weight="bold" font-size="25" fill="#0f172a" text-anchor="middle">Eyepiece (L3)</text>
+            <text x="1300" y="175" font-family="monospace" font-weight="600" font-size="20" fill="#64748b" text-anchor="middle">f = ${f3} cm</text>
+        </svg>`;
+
+        const blob = new Blob([svgContent], {type: 'image/svg+xml;charset=utf-8'});
+        const blobUrl = URL.createObjectURL(blob);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = blobUrl;
+        downloadLink.download = `optical_schematic_${Date.now()}.svg`;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+    else {
+        let mimeType = 'image/png';
+        let ext = 'png';
+        if (format === 'jpeg') { mimeType = 'image/jpeg'; ext = 'jpg'; }
+        if (format === 'webp') { mimeType = 'image/webp'; ext = 'webp'; }
         
         const imageURI = canvas.toDataURL(mimeType, 1.0);
         const downloadLink = document.createElement('a');
-        downloadLink.download = `optical_schematic_hd_${Date.now()}.${fileExtension}`;
+        downloadLink.download = `optical_schematic_4xHD_${Date.now()}.${ext}`;
         downloadLink.href = imageURI;
         document.body.appendChild(downloadLink);
         downloadLink.click();
@@ -723,7 +812,6 @@ function executeSystemExport() {
     }
 }
 
-// System initialization hooks
 updateLiveMetrics();
 window.addEventListener('load', () => {
     computeMatrix();
